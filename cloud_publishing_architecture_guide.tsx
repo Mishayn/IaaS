@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  Cloud, 
-  Server, 
-  Cpu, 
-  Layers, 
   FileText, 
   Figma, 
-  Edit3, 
-  ShieldCheck, 
-  Lock, 
-  FolderTree, 
-  FileCheck, 
   ExternalLink, 
   CheckCircle2, 
   AlertTriangle, 
-  BookOpen, 
+  Lock, 
+  FolderTree, 
   Users, 
   GitBranch, 
   Clock, 
@@ -24,9 +16,7 @@ import {
   ChevronDown,
   ArrowRight,
   Terminal,
-  Shield,
-  Folder,
-  File
+  Shield
 } from 'lucide-react';
 
 export default function App() {
@@ -72,12 +62,12 @@ export default function App() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const toggleFolder = (folder) => {
-    setExpandedFolders(prev => ({ ...prev, [folder]: !prev[folder] }));
+  const toggleFolder = (folder: string) => {
+    setExpandedFolders(prev => ({ ...prev, [folder]: !prev[folder as keyof typeof prev] }));
   };
 
-  const toggleChecklist = (key) => {
-    setSecurityChecklist(prev => ({ ...prev, [key]: !prev[key] }));
+  const toggleChecklist = (key: string) => {
+    setSecurityChecklist(prev => ({ ...prev, [key]: !prev[key as keyof typeof prev] }));
   };
 
   const navItems = [
@@ -141,7 +131,7 @@ export default function App() {
         
         {/* TAB 1: MODELS ANALYSIS */}
         {activeTab === 'models' && (
-          <div className="space-y-10 animate-fadeIn">
+          <div className="space-y-10">
             {/* Section Header */}
             <div className="border-b border-slate-800 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
@@ -339,7 +329,7 @@ export default function App() {
                 Зведена матриця розподілу відповідальності
               </h3>
               <p className="text-xs text-slate-400 mb-4 font-mono">
-                Зони відповідальності клієнта та провайдера у хмарних стеків
+                Зони відповідальності клієнта та провайдера у хмарних стеках
               </p>
               
               <table className="w-full text-left text-xs border-collapse">
@@ -389,7 +379,7 @@ export default function App() {
 
         {/* TAB 2: WORKSPACE CONCEPT */}
         {activeTab === 'workspace' && (
-          <div className="space-y-10 animate-fadeIn">
+          <div className="space-y-10">
             <div className="border-b border-slate-800 pb-4">
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Розділ II</span>
               <h2 className="text-2xl font-bold text-white mt-0.5">
@@ -467,7 +457,7 @@ export default function App() {
                     <ul className="space-y-2.5 text-xs text-slate-300">
                       <li className="flex items-start gap-2">
                         <span className="font-mono text-cyan-400 font-bold">•</span>
-                        <span><strong>Режим "Пропозиції" (Suggesting):</strong> Редактор вносить правки, які автор приймає або відхиляє.</span>
+                        <span><strong>Режим &quot;Пропозиції&quot; (Suggesting):</strong> Редактор вносить правки, які автор приймає або відхиляє.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="font-mono text-cyan-400 font-bold">•</span>
@@ -475,7 +465,7 @@ export default function App() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="font-mono text-cyan-400 font-bold">•</span>
-                        <span><strong>Рівні доступу:</strong> Диференціація прав на "Переглядач", "Коментатор" та "Редактор".</span>
+                        <span><strong>Рівні доступу:</strong> Диференціація прав на &quot;Переглядач&quot;, &quot;Коментатор&quot; та &quot;Редактор&quot;.</span>
                       </li>
                     </ul>
                   </div>
@@ -491,7 +481,7 @@ export default function App() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="font-mono text-cyan-400 font-bold">•</span>
-                        <span><strong>Іменовані контрольні точки:</strong> Фіксація ключових етапів (напр. <em>"Текст_після_правки_головреда"</em>).</span>
+                        <span><strong>Іменовані контрольні точки:</strong> Фіксація ключових етапів (напр. <em>&quot;Текст_після_правки_головреда&quot;</em>).</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="font-mono text-cyan-400 font-bold">•</span>
@@ -549,7 +539,7 @@ export default function App() {
 
         {/* TAB 3: DATA ORGANIZATION */}
         {activeTab === 'organization' && (
-          <div className="space-y-10 animate-fadeIn">
+          <div className="space-y-10">
             <div className="border-b border-slate-800 pb-4">
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Розділ III</span>
               <h2 className="text-2xl font-bold text-white mt-0.5">
@@ -650,7 +640,7 @@ export default function App() {
                   className="flex items-center gap-1.5 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded text-xs font-mono font-bold transition-all"
                 >
                   {copied ? <Check className="w-4 h-4 stroke-[3]" /> : <Copy className="w-4 h-4" />}
-                  <span>{copied ? 'Скопійовано' : 'Копіювати ім\'я'}</span>
+                  <span>{copied ? 'Скопійовано' : "Копіювати ім'я"}</span>
                 </button>
               </div>
             </div>
@@ -745,7 +735,7 @@ export default function App() {
 
         {/* TAB 4: RISK ASSESSMENT & SECURITY */}
         {activeTab === 'security' && (
-          <div className="space-y-10 animate-fadeIn">
+          <div className="space-y-10">
             <div className="border-b border-slate-800 pb-4">
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Розділ IV</span>
               <h2 className="text-2xl font-bold text-white mt-0.5">
@@ -803,7 +793,7 @@ export default function App() {
 
               <div className="space-y-2.5">
                 {[
-                  { key: 'offlineMode', title: 'Активовано офлайн-режим у Google Docs', desc: 'Захист від раптового вимкнення інтернет-з\'єднання.' },
+                  { key: 'offlineMode', title: "Активовано офлайн-режим у Google Docs", desc: "Захист від раптового вимкнення інтернет-з'єднання." },
                   { key: 'backup321', title: 'Впроваджено правило бекапу 3-2-1', desc: 'Локальна копія вихідних файлів на незалежному накопичувачі.' },
                   { key: 'tfaEnabled', title: 'Двофакторна автентифікація (2FA) увімкнена', desc: 'Захист профілів Figma та Google Workspace.' },
                   { key: 'restrictedSharing', title: 'Вимкнено доступ за публічними посиланнями', desc: 'Надання доступу лише конкретним корпоративним поштам.' },
@@ -814,16 +804,16 @@ export default function App() {
                     key={item.key}
                     onClick={() => toggleChecklist(item.key)}
                     className={`p-3 rounded-lg border transition-all cursor-pointer flex items-start gap-3 ${
-                      securityChecklist[item.key]
+                      securityChecklist[item.key as keyof typeof securityChecklist]
                         ? 'bg-emerald-950/30 border-emerald-800/60'
                         : 'bg-slate-950 border-slate-800 hover:border-slate-700'
                     }`}
                   >
-                    <div className={`mt-0.5 rounded p-0.5 ${securityChecklist[item.key] ? 'bg-emerald-500 text-slate-950' : 'border border-slate-600 text-transparent'}`}>
+                    <div className={`mt-0.5 rounded p-0.5 ${securityChecklist[item.key as keyof typeof securityChecklist] ? 'bg-emerald-500 text-slate-950' : 'border border-slate-600 text-transparent'}`}>
                       <Check className="w-3.5 h-3.5 stroke-[3]" />
                     </div>
                     <div>
-                      <h4 className={`text-xs font-bold ${securityChecklist[item.key] ? 'text-emerald-400' : 'text-slate-200'}`}>
+                      <h4 className={`text-xs font-bold ${securityChecklist[item.key as keyof typeof securityChecklist] ? 'text-emerald-400' : 'text-slate-200'}`}>
                         {item.title}
                       </h4>
                       <p className="text-[11px] text-slate-500 mt-0.5">{item.desc}</p>
@@ -837,7 +827,7 @@ export default function App() {
 
         {/* TAB 5: REFERENCES */}
         {activeTab === 'references' && (
-          <div className="space-y-10 animate-fadeIn">
+          <div className="space-y-10">
             <div className="border-b border-slate-800 pb-4">
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Розділ V</span>
               <h2 className="text-2xl font-bold text-white mt-0.5">
